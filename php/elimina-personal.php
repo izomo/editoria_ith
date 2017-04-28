@@ -32,9 +32,16 @@ echo '<table class="table table-striped table-condensed table-hover">
 				<td>'.$registro2['Nom_Personal'].'</td>
 				<td>'.$registro2['Nom_Departamento'].'</td>
 				<td>'.$registro2['Correo_Electronico'].'</td>
-				<td><a href="../vistas/genera-servicio.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-edit"></a>   <a href="../vistas/actualizarpersonal.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-pencil"></a> </a><a href="../vistas/reporte-por-usuario.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-th-list"></a> <a href="javascript:eliminarProducto('.$registro2['id_personal'].');" class="glyphicon glyphicon-remove-circle"></td>
+				<td>
+				<a href="../vistas/genera-servicio.php?id='.$registro2['id_personal'].'" class="glyphicon glyphicon-edit"></a>   
+				<a href="../vistas/actualizarpersonal.php?id='.$registro2['id_personal'].'" class="glyphicon glyphicon-pencil"></a> 
+				 
+				<a href="javascript:eliminarProducto('.$registro2['id_personal'].')" class="glyphicon glyphicon-remove-circle"></td>
 				</tr>';
 	}
 echo '</table>';
 }
 ?>
+
+<!--<a href="../vistas/reporte-por-usuario.php?id='.$registro2['id_personal'].'" class="glyphicon glyphicon-th-list"></a>-->
+

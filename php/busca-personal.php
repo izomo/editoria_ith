@@ -10,7 +10,7 @@ $dato = $_POST['dato'];
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
 
-$registro = mysql_query("SELECT * FROM personal WHERE Nom_Personal LIKE '%$dato%' OR Nom_Departamento like '%$dato%' OR id_personal like '%$dato%' ORDER BY Nom_Personal ASC");
+$registro = mysql_query("SELECT * FROM personal WHERE Nom_Personal LIKE '%$dato%' OR Nom_Departamento like '%$dato%' OR id_personal like '$dato' ORDER BY Nom_Personal ASC");
 
 //CREAMOS NUESTRA VISTA Y LA DEVOLVEMOS AL AJAX
 
@@ -29,9 +29,13 @@ if(mysql_num_rows($registro)>0){
 				<td>'.$registro2['Nom_Personal'].'</td>
 				<td>'.$registro2['Nom_Departamento'].'</td>
 				<td>'.$registro2['Correo_Electronico'].'</td>
-				<td><a href="../vistas/genera-servicio.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-edit"></a>   <a href="../vistas/actualizarpersonal.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-pencil"></a> </a><a href="../vistas/reporte-por-usuario.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-th-list"></a> <a href="javascript:eliminarProducto('.$registro2['id_personal'].');" class="glyphicon glyphicon-remove-circle"></td>
+				
+				<td><a href="../vistas/genera-servicio.php?id='.$registro2['id_personal'].'" class="glyphicon glyphicon-edit"></a>   
+				<a href="../vistas/actualizarpersonal.php?id='.$registro2['id_personal'].'" class="glyphicon glyphicon-pencil"></a> </a>
+				 
+				<a href="javascript:eliminarProducto('.$registro2['id_personal'].')" class="glyphicon glyphicon-remove-circle"></td>
 			</tr>';
-	}
+	}//Codigo Correcto de Javacript
 }else{
 	echo '<tr>
 				<td colspan="6">No se encontraron resultados</td>

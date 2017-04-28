@@ -34,7 +34,9 @@ echo '<table class="table table-striped table-condensed table-hover">
 				<td>'.$registro2['Nom_Departamento'].'</td>
 				<td>'.$registro2['Correo_Electronico'].'</td>
 				<td>'.$registro2['password'].'</td>
-				<td><a href="../vistas/actualizarpersonaladmin.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-edit"></a>   <a href="javascript:eliminarPersonal('.$registro2['id_personal'].');" class="glyphicon glyphicon-remove-circle"></a></td>
+				<td>
+				<a href="../vistas/actualizarpersonaladmin.php?id=('.$registro2['id_personal'].');" class="glyphicon glyphicon-edit"></a>   
+				<a href="javascript:eliminarPersonal('.$registro2['id_personal'].');" class="glyphicon glyphicon-remove-circle"></a></td>
 				</tr>';
 	}
 echo '</table>';
