@@ -8,13 +8,13 @@ if (@!$_SESSION['user']) {
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title> Editorial  ITH </title>
+    <title>Oficina Editorial  ITH </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="../css/estilos.css">
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
 
-    <link rel="shortcut icon" href="../images/favicon.ico">
+    <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
@@ -83,68 +83,113 @@ body,td,th {
 		<div class="caption">
 		
 <!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
-		<h2> Genera un servicio pendiente</h2>	
+		<h2> Administración de Personal Registrado</h2>	
 		<div class="well well-small">
 		<hr class="soft"/>
-		<h4 align="center">Genera Servicio</h4>
+		<h4 align="center">Edición de Personal</h4>
 		<div class="row-fluid">
 		
 		<?php
 		extract($_GET);
 		require("../php/connect_db.php");
 
-		$sql="SELECT * FROM personal WHERE id_personal= $id";
+		
+		/*
+		$sql="SELECT * FROM personal WHERE id_personal=$id";
 		$ressql=mysql_query($sql);
 		while ($row=mysql_fetch_row ($ressql)){
 		    	$id=$row[0];
-		    	$nombre=$row[1];
-		    	$departamento=$row[2];
+		    	$Nombre=$row[1];
+		    	$Departamento=$row[2];
+		    	$email=$row[3];
+		    }*/
+
+		$sql="SELECT * FROM reg_serv_copiado WHERE 	id_reg_serv_copiado=$id";
+		$ressql=mysql_query($sql);
+		while ($row=mysql_fetch_row ($ressql)){
+		    	$id=$row[0];
+		    	$Departamento=$row[1];
+		    	$Nombre=$row[2];
+		    	$Numero_copias=$row[3];
+		    	$Clave=$row[4];
+		    	$Fecha=$row[5];
 		    }
 
-		$consulta = "select id,servicio from tipo_servicio order by servicio asc";
-		//$consulta = "select * from tipo_servicio";
-		$resultado = mysql_query($consulta);
+		/*
+		$sql="UPDATE personal SET id_personal=$id, Nom_Personal=$Nombre, Nom_departamento=$Departamento, Correo_Electronico=$email WHERE id_personal=$id"
+		*/
+
+		$sql="UPDATE reg_serv_copiado SET id_reg_serv_copiado=$id, departamento=$Departamento, maestro=$Nombre, num_copias=$Numero_copias, clave=$Clave, fecha=$Fecha WHERE id_reg_serv_copiado=$id"
+
+		/*
+		$sql="SELECT * FROM personal WHERE Nom_Personal=$Nombre";
+		$ressql=mysql_query($sql);
+		while ($row=mysql_fetch_row ($ressql)){
+		    	$id=$row[0];
+		    	$Nombre=$row[1];
+		    	$Departamento=$row[2];
+		    	$email=$row[3];
+		    }
+
+		$sql="SELECT * FROM personal WHERE Correo_Electronico=$email";
+		$ressql=mysql_query($sql);
+		while ($row=mysql_fetch_row ($ressql)){
+		    	$id=$row[0];
+		    	$Nombre=$row[1];
+		    	$Departamento=$row[2];
+		    	$email=$row[3];
+		    }
+
+		$sql="SELECT * FROM personal WHERE Nom_departamento=$Departamento";
+		$ressql=mysql_query($sql);
+		while ($row=mysql_fetch_row ($ressql)){
+		    	$id=$row[0];
+		    	$Nombre=$row[1];
+		    	$Departamento=$row[2];
+		    	$email=$row[3];
+		    }*/
 
 		?>
 		<div align="center">
-		<form name="form1" action="../php/agrega-serv-nuevo-personal.php" method="post">
+		<form name="form1" action="../php/ejecuta-actualizar-servicios.php?id_anterior=<?= $id ?>" method="post">
 				
-				<!--ID-->
-				Id<br><input style="border-radius:15px;" type="text" name="id" minlength="0" maxlength="10000" value= "<?php echo $id ?>"><br>
-				<!--FECHA-->
-				Fecha<br><input style="border-radius:15px;" type="date" minlength="4" maxlength="11" name="fecha" required=""><br>
-				<!--Departamento-->
-				Departamento<br> <input style="border-radius:15px;" type="text" name="Nom_Departamento" minlength="8" maxlength="30" value="<?php echo $departamento?>" required><br>
-				<!--Departamento-->
-				Nombre<br> <input style="border-radius:15px;" type="text" name="maestro" minlength="8" maxlength="50" value="<?php echo $nombre?>" required><br>
-				<!--Numero de Copias-->
-				Numero de Copias: (Max 10,000)<br>
-				<input style="border-radius:15px;" type="number" min="1" max="10000" required="" name="num_copias">
-				<br>
-				<!--Clave-->
-				Clave: <br>
-					<select type="text" id="clave" name="clave" style="border-radius:15px;" required>
-					<option value="">Seleccionar</option>
-				<?php 
-				while ($fila = mysql_fetch_row($resultado)) {
-					echo "<option value=".$fila['0'].">".$fila['1']."</option>";
-				}?>
+				Id<br><input type="text" name="id_modificar" value= "<?php echo $id ?>"><br>
 				
-			</select>
-			<!--<select type="text" id="clave" name="clave" style="border-radius:15px;" required>
-			   <option value="Examenes">Examenes</option>
-			   <option value="Material Didactico">Material Didactico</option>
-			   <option value="Documentos Personales">Docs. Personales</option>
-			   <option value="Practicas de Laboratorio">Practicas de Laboratorio</option>
-			   <option value="Documentos Operativos">Documentos Operativos</option>
-            </select> -->
+				<!--DEPARTAMENTO-->
+				<br>Departamento<br> 
+				    <select id="Nom_Departamento" name="Departamento_s" required="" >
+						<?php	
+						include("connect_db.php");
+
+						$query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
+						$i = 0;
+						while ($row = mysql_fetch_assoc($query)) {
+							?><option value="<?= $row['Nom_Departamento']; ?>" ><?= $row['Nom_Departamento'];?></option><?php
+						$i++; }?>
+				    </select><br><br>
+
+				Nombre<br> <input type="text" name="Maestro" value="<?php echo $Nombre?>"><br>
+
+				Numero de Copias (Max 10,000)<br> <input style="border-radius:15px;" type="number" min="1" max="10000" name="Copias_s" value="<?php echo $Numero_copias?>"><br>
+
+				Clave<br>
+
+					<select type="text" id="clave" name="Clave_s" style="border-radius:15px;" required>
+						<?php	
+						include("connect_db.php");
+
+						$query = mysql_query("select servicio from tipo_servicio", $conexion) or die(mysql_error());
+						$i = 0;
+						while ($row = mysql_fetch_assoc($query)) {
+							?><option value="<?= $row['servicio']; ?>" ><?= $row['servicio'];?></option><?php
+						$i++; }?>
+				    </select><br><br>
+			
+				Fecha<br> <input type="text" name="Fecha_s" value="<?php echo $Fecha?>"><br>
 		</div>
 				<input type="submit" name="Guardar" value="Guardar" class="btn btn-success btn-primary">
 		</form>
 
-				  
-		
-		
 		<div class="span8">
 		
 		</div>	
@@ -159,14 +204,8 @@ body,td,th {
 
 
 
-		
-		
 		</div>
-
-		
-
-
-		
+	
 
 <!--///////////////////////////////////////////////////Termina cuerpo del documento interno////////////////////////////////////////////-->
 </div>

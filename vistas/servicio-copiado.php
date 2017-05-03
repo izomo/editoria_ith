@@ -1,56 +1,42 @@
 <!DOCTYPE html>
-<?php
-		session_start();
-if (@!$_SESSION['user']) {
-	header("Location:../index.php");
-}else {
-include("../php/connect_db.php");
-$consulta = "select id,servicio from tipo_servicio order by servicio asc";
-$resultado = mysql_query($consulta);
-
-
-}
-?>
-
+		<?php
+			session_start();
+			if (@!$_SESSION['user']) {
+				header("Location:../index.php");
+			}
+		?>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Editorial ITH</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <link rel="stylesheet" type="text/css" href="../css/estilos.css">
-    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <link rel="shortcut icon" href="../images/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
-    <script type="text/javascript">
-            $("document").ready(function(){
-                $("#Departamento").load("../php/departamentos.php");
-                $("#Departamento").change(function(){
-                	var id = $("#Departamento").val();
-                	$.get("../php/maestros.php",{param_id:id})
-                	.done(function(data){
-                		$("#maestro").html(data);
-                	})
-                	}) 
-            })
-    </script>
-  </head>
-  <style type="text/css">
-body {
-	background-color: ##F2F2F2;
-	
-}
-body,td,th {
-	color: #FFF;
-}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Editorial ITH</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<link rel="shortcut icon" href="../images/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../css/estilos.css">
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="../bootstrap/css/bootstrap2.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap-theme2.css" rel="stylesheet">
+	<link href="../bootstrap/css/bootstrap-theme2.min.css" rel="stylesheet">
+	<link href="../css/responsive.css" rel="stylesheet">
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/myjava.js"></script>
+ </head>
 
+<style type="text/css">
+
+	body {
+		background-color: ##F2F2F2;
+	}
+	body,td,th {
+		color: ##000000;
+	}
 </style>
+
 <header>
-  <img src="../images/header-ith.png">
+<img src="../images/header-ith.png">
 
 </header>
 <p>&nbsp;</p>
@@ -64,7 +50,7 @@ body,td,th {
   </tr>
 <div class="container">
 <header class="header">
-<div class="row">
+	<div class="row">
 	</div>
 </header>
 
@@ -81,12 +67,12 @@ body,td,th {
 			 
 	
 		</ul>
-		<form action="#" class="navbar-search form-inline" style="margin-top:6px">
-		
-		</form>
+			<form action="#" class="navbar-search form-inline" style="margin-top:6px">
+			
+			</form>
 		<ul class="nav pull-right">
-		<li><a href="">Bienvenido <strong><?php echo $_SESSION['user'];?></strong> </a></li>
-			  <li><a href="../php/desconectar.php"> Cerrar Sesión </a></li>			 
+			<li><a>Bienvenido <strong><?php echo $_SESSION['user'];?></strong> </a></li>
+			<li><a href="../php/desconectar.php"> Cerrar Sesión </a></li>			 
 		</ul>
 	  </div><!-- /.nav-collapse -->
 	</div>
@@ -96,84 +82,54 @@ body,td,th {
 <!-- ======================================================================================================================== -->
 <div class="row">
 	
-	
-		
 	<div class="span12">
 
 		<div class="caption">
-		
-<!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
-		<h2 style="color: #605C5C">Servicio de Copiado</h2>	
+<!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->	
 		<div class="well well-small">
 		<hr class="soft"/>
-		<h4 style="color: #837E7E"; align="center">Nuevo Servicio</h4>
+		<h4 align="center">Consultar Servicio de Copiado</h4>
 		<div class="row-fluid">
-		
+    
+    <section>
 
-		<form name="form1" action="../php/agrega-serv-nuevo.php" method="post">
-		<p align="center">
-		    <b style="color: #837E7E">Fecha</b><br>
-		        <input type= "date" name= "fecha" style="border-radius:15px;" required><br>
-			<b style="color: #837E7E">Departamento</b><br>
-			<select id=Departamento name="Nom_Departamento" style="border-radius:15px;" required>
-				
-			</select>
+	    <table border="0" align="center">
+	        <tr>
+	    	    <td>Buscar Servicio</td>
+	        </tr>
+	    	<tr>
+	        	<td><input type="text" placeholder="Busca por: Id" id="bs-serv"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 
-            <br>
-			<b style="color: #837E7E">Maestro</b><br> 
-			<select id=maestro name="maestro"style="border-radius:15px;" required>
-				
+	        	<!--
+	        	<td width="100"> 
+	        	    <form name="form1" action="agrega-personal.php" method="post">
+	        		<input type="submit" value="Buscar" class="btn btn-primary"></input>       
+	        	    </form>
+	        	</td>-->
 
-			</select>>
-       
-            <br>
-			<b style="color: #837E7E">Numero de Copias (Max 10,000):</b><br> <input type="number" min="1" max="10000" id="num_copias" name="num_copias" style="border-radius:15px;" align="center" required><br>
-</select><br>
-			<b style="color: #837E7E">Clave</b><br> 
-			<select type="text" id="clave" name="clave" style="border-radius:15px;" required>
-				<option value="">Seleccionar</option>
-				<?php 
-				while ($fila = mysql_fetch_row($resultado)) {
-					echo "<option value='".$fila['1']."'>".$fila['1']."</option>";
-				}
-				?>
-			</select>
-
-			<!--<select type="text" id="clave" name="clave" style="border-radius:15px;" required>
-			   <option value="Examenes">Examenes</option>
-			   <option value="Material Didactico">Material Didactico</option>
-			   <option value="Documentos Personales">Docs. Personales</option>
-			   <option value="Practicas de Laboratorio">Practicas de Laboratorio</option>
-			   <option value="Documentos Operativos">Documentos Operativos</option>
-			</select>--><br>
-		</p>
-        <input type="submit" name="BtnGuardar" value="Guardar"/>
-	    </form>
-        
-				 
-		
+	                 <!--<input type="button" name="AgregaPersonal" value="Agrega Una Nueva Persona" href="agrega-personal.php"/>-->
+	        </tr>
+	    </table>
+    </section>
+ 
+    	<div class="registros" id="agrega-registros"> </div>
+	      <center>
+	        <ul class="pagination" id="pagination"></ul>
+	      </center>		
 		<div class="span8">
-		
+			
 		</div>	
-		</div>	
-		<br/>
+	</div>	
+	<br/>
 		
 
 
 		<!--EMPIEZA DESLIZABLE-->
-
+		
 		 <!--TERMINA DESLIZABLE-->
+</div>
 
-
-
-		
-		
-		</div>
-
-		
-
-
-		
+	
 
 <!--///////////////////////////////////////////////////Termina cuerpo del documento interno////////////////////////////////////////////-->
 </div>
@@ -189,8 +145,8 @@ body,td,th {
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../bootstrap/js/jquery-1.8.3.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.min.js"></script>
+    <script src="bootstrap/js/jquery-1.8.3.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 	</style>
   </body>
 </html>

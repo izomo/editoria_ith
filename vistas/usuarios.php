@@ -90,6 +90,7 @@
 		<hr class="soft"/>
 		<h4 align="center">Administración de Usuarios Registrados</h4>
 		<div class="row-fluid">
+    
     <section>
 
 	    <table border="0" align="center">
@@ -109,7 +110,7 @@
 	    </table>
     </section>
  
-    	<div class="registros" id="agrega-registros"></div>
+    	<div class="registros" id="agrega-registros"> </div>
 	      <center>
 	        <ul class="pagination" id="pagination"></ul>
 	      </center>		
