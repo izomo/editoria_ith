@@ -96,7 +96,7 @@ body,td,th {
 		$sql="SELECT * FROM personal WHERE id_personal= $id";
 		$ressql=mysql_query($sql);
 		while ($row=mysql_fetch_row ($ressql)){
-		    	$id=$row[0];
+		    	$id_new=$row[0];
 		    	$nombre=$row[1];
 		    	$departamento=$row[2];
 		    }
@@ -105,18 +105,23 @@ body,td,th {
 		//$consulta = "select * from tipo_servicio";
 		$resultado = mysql_query($consulta);
 
+		//Fecha y hora actual para el campo de fechas
+		$fecha_actual = date("Y/m/d");
+		//echo $fecha_actual;
+		
 		?>
+
 		<div align="center">
 		<form name="form1" action="../php/agrega-serv-nuevo-personal.php" method="post">
 				
 				<!--ID-->
-				Id<br><input style="border-radius:15px;" type="text" name="id" minlength="0" maxlength="10000" value= "<?php echo $id ?>"><br>
+				Id_Personal<br><input style="border-radius:15px;" type="text" name="id_personal" minlength="0" maxlength="10000" value= "<?= $id_new ?>"><br>
 				<!--FECHA-->
-				Fecha<br><input style="border-radius:15px;" type="date" minlength="4" maxlength="11" name="fecha" required=""><br>
+				Fecha<br><input style="border-radius:15px;" type="text" minlength="4" maxlength="11" name="fecha" value="<?php echo $fecha_actual; ?>"><br>
 				<!--Departamento-->
-				Departamento<br> <input style="border-radius:15px;" type="text" name="Nom_Departamento" minlength="8" maxlength="30" value="<?php echo $departamento?>" required><br>
+				Departamento<br> <input style="border-radius:15px;" type="text" name="Nom_Departamento" minlength="8" maxlength="30" value="<?= $departamento ?>" required><br>
 				<!--Departamento-->
-				Nombre<br> <input style="border-radius:15px;" type="text" name="maestro" minlength="8" maxlength="50" value="<?php echo $nombre?>" required><br>
+				Nombre<br> <input style="border-radius:15px;" type="text" name="maestro" minlength="8" maxlength="50" value="<?= $nombre ?>" required><br>
 				<!--Numero de Copias-->
 				Numero de Copias: (Max 10,000)<br>
 				<input style="border-radius:15px;" type="number" min="1" max="10000" required="" name="num_copias">

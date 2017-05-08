@@ -8,9 +8,8 @@ include('connect_db.php');
 
 $id = $_POST['id'];
 
-//ELIMINAMOS EL PRODUCTO
 
-$sqlborrar="DELETE FROM tipo_servicio WHERE id=$id";
+$sqlborrar="DELETE FROM reg_serv_copiado WHERE id_reg_serv_copiado=$id";
 $resborrar=mysql_query($sqlborrar);
 echo $id;
 }

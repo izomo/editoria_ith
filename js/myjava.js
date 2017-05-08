@@ -1,5 +1,34 @@
-$(document).ready(pagination(1));
-$(function(){
+$(document).ready(function(){
+
+	//Boton de Busqueda de Personal 
+	$('#btn-prod').click(function(){
+		var dato = $('#bs-prod').val();
+		var url = '../php/busca-personal.php';
+		$.ajax({
+			type:'POST',
+			url:url,
+			data:{'dato':dato},
+			success: function(datos){
+				$('#agrega-registros').html(datos);
+			}
+		});	
+	});
+
+	/*Boton de busqueda de servicio
+	$('#btn-serv').click(function(){
+		alert("holas");
+		var dato = $('#bs-serv').val();
+		var url = '../php/modificar-servicio.php';
+		$.ajax({
+			type:'POST',
+			url:url,
+			data:{'dato':dato},
+			success: function(datos){
+				$('#agrega-registros').html(datos);
+			}
+		});	
+	});*/
+
 	$('#bd-desde').on('change', function(){
 		var desde = $('#bd-desde').val();
 		var hasta = $('#bd-hasta').val();
@@ -14,7 +43,7 @@ $(function(){
 	});
 	return false;
 	});
-	
+
 	$('#bd-hasta').on('change', function(){
 		var desde = $('#bd-desde').val();
 		var hasta = $('#bd-hasta').val();
@@ -29,7 +58,7 @@ $(function(){
 	});
 	return false;
 	});
-	
+
 	$('#nuevo-producto').on('click',function(){
 		$('#formulario')[0].reset();
 		$('#pro').val('Registro');
@@ -42,25 +71,41 @@ $(function(){
 	});
 
 	$('#bs-prod').keyup(function(e){
-	    if(e.keyCode == 13){
+		if(e.keyCode == 13) {
 			var dato = $('#bs-prod').val();
 			var url = '../php/busca-personal.php';
-			$.ajax({
-			type:'POST',
-			url:url,
-			data:'dato='+dato,
-			success: function(datos){
-				$('#agrega-registros').html(datos);
-			}
-		});
-		return false;
+				$.ajax({
+				type:'POST',
+				url:url,
+				data:'dato='+dato,
+					success: function(datos){
+						$('#agrega-registros').html(datos);
+					}
+			});
+			return false;
 		}
 	});
 
 	$('#bs-serv').keyup(function(e){
-	    if(e.keyCode == 13){
-			var dato = $('#bs-serv').val();
+		if(e.keyCode == 13) {
+			var dato_env = $('#bs-serv').val();
 			var url = '../php/modificar-servicio.php';
+				$.ajax({
+				type:'POST',
+				url:url,
+				data:{dato:dato_env},
+					success: function(datos){
+						$('#agrega-registros').html(datos);
+					}
+			});
+			return false;
+		}
+	});
+
+
+	$('#bs-personal').on('keyup',function(){
+			var dato = $('#bs-personal').val();
+			var url = '../php/busca-personal-admin.php';
 			$.ajax({
 			type:'POST',
 			url:url,
@@ -70,24 +115,11 @@ $(function(){
 			}
 		});
 		return false;
-		}
 	});
 
-$('#bs-personal').on('keyup',function(){
-		var dato = $('#bs-personal').val();
-		var url = '../php/busca-personal-admin.php';
-		$.ajax({
-		type:'POST',
-		url:url,
-		data:'dato='+dato,
-		success: function(datos){
-			$('#agrega-registros').html(datos);
-		}
-	});
-	return false;
-	});
-	
 });
+
+
 
 function agregaRegistro(){
 	var url = '../php/agrega-personal.php';
@@ -129,6 +161,27 @@ function eliminarProducto(id){
 		return false;
 	}
 }
+
+function eliminarServicio(id_env){
+	var url = '../php/elimina-servicio.php';
+	var pregunta = confirm('¿Esta seguro de eliminar este Servicio? ');
+	if(pregunta==true){
+		$.ajax({
+		type:'POST',
+		url:url,
+		data:{id:id_env},
+		success: function(dato){
+			$('#tr'+dato).html("registros");
+			return false;
+		}
+	});
+	return false;
+	}else{
+		return false;
+	}
+}
+
+
 function eliminarUsuario(id){
 	var url = '../php/elimina-usuario.php';
 	var pregunta = confirm('¿Esta seguro de eliminar este Usuario?');
@@ -166,6 +219,8 @@ function eliminarPersonal(id){
 		return false;
 	}
 }
+
+
 
 function editarProducto(id){
 	$('#formulario')[0].reset();

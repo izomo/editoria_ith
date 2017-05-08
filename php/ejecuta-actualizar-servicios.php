@@ -9,23 +9,24 @@ else{
 
 	require("connect_db.php");
 
-	$id_anterior = $_GET['id_anterior'];
-	$id_modificar = $_POST['id_modificar'];
+	$Id_servicio = $_POST['ID_servicio'];
 	$Departamento = $_POST['Departamento_s'];
+	$Id_personal = $_POST['ID_personal'];
 	$Nombre = $_POST['Maestro'];
 	$Numero_copias = $_POST['Copias_s'];
 	$Clave = $_POST['Clave_s'];
 	$Fecha = $_POST['Fecha_s'];
 
 	$sentencia=mysql_query("UPDATE reg_serv_copiado SET 
-		id_reg_serv_copiado='$id_modificar', 
+		id_reg_serv_copiado='$Id_servicio',
+		id_personal='$Id_personal', 
 		departamento='$Departamento', 
 		maestro='$Nombre', 
 		num_copias='$Numero_copias', 
 		clave='$Clave', 
 		fecha='$Fecha' 
 		where 
-		id_reg_serv_copiado='$id_anterior'", $conexion) or die (mysql_error());
+		id_reg_serv_copiado='$Id_servicio'", $conexion) or die (mysql_error());
 
 	//$resent=mysql_query($sentencia);
 	if ($sentencia==null) {

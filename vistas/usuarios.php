@@ -64,15 +64,15 @@
 	  <div class="nav-collapse">
 		<ul class="nav">
 			<li class=""><a href="principal.php">Principal</a></li>
-			 
-	
+
+
 		</ul>
 			<form action="#" class="navbar-search form-inline" style="margin-top:6px">
-			
+
 			</form>
 		<ul class="nav pull-right">
 			<li><a>Bienvenido <strong><?php echo $_SESSION['user'];?></strong> </a></li>
-			<li><a href="../php/desconectar.php"> Cerrar Sesión </a></li>			 
+			<li><a href="../php/desconectar.php"> Cerrar Sesión </a></li>
 		</ul>
 	  </div><!-- /.nav-collapse -->
 	</div>
@@ -81,16 +81,16 @@
 
 <!-- ======================================================================================================================== -->
 <div class="row">
-	
+
 	<div class="span12">
 
 		<div class="caption">
-<!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->	
+<!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
 		<div class="well well-small">
 		<hr class="soft"/>
 		<h4 align="center">Administración de Usuarios Registrados</h4>
 		<div class="row-fluid">
-    
+
     <section>
 
 	    <table border="0" align="center">
@@ -98,36 +98,44 @@
 	    	    <td>Buscador de Personal</td>
 	        </tr>
 	    	<tr>
-	        	<td><input type="text" placeholder="Busca por: Id, Nombre o Departamento" id="bs-prod"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-	        	<td width="100"> 
-	        	    <form name="form1" action="agrega-personal.php" method="post">
-	        		<input type="submit" value="Agrega Nuevo Personal" class="btn btn-primary"></input>       
+	        	<td>
+	        		<input type="text" placeholder="Busca por: Id, Nombre o Departamento" id="bs-prod"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+	        	<td width="100">
+	        	    <form name="form22">
+	        			<button id="btn-prod" type="button" class="btn btn-primary btn_sm">Buscar</button>
 	        	    </form>
+	        	</td>
+
+
+	        	<td width="100">
+	        	    <form name="form1" action="agrega-personal.php" method="post">
+	        		<input type="submit" value="Agrega Nuevo Personal" class="btn btn-primary"></input> </form>
 	        	</td>
 
 	                 <!--<input type="button" name="AgregaPersonal" value="Agrega Una Nueva Persona" href="agrega-personal.php"/>-->
 	        </tr>
 	    </table>
     </section>
- 
+
     	<div class="registros" id="agrega-registros"> </div>
 	      <center>
 	        <ul class="pagination" id="pagination"></ul>
-	      </center>		
+	      </center>
 		<div class="span8">
-			
-		</div>	
-	</div>	
+
+		</div>
+	</div>
 	<br/>
-		
+
 
 
 		<!--EMPIEZA DESLIZABLE-->
-		
+
 		 <!--TERMINA DESLIZABLE-->
 </div>
 
-	
+
 
 <!--///////////////////////////////////////////////////Termina cuerpo del documento interno////////////////////////////////////////////-->
 </div>

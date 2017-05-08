@@ -77,10 +77,30 @@ body,td,th {
 				<h2 style="color: #605C5C"; align="center">Menú</h2>
 				   
 				   <table align="center" border="0" style="width:80%">
-				   <tr><td><img src="../images/usuarios.png"><form align:"left"></form><a href="usuarios.php">Personal</a></td>
-				   <td><img src="../images/copiado.png"><form align:"center"></form><a href="servicio-copiado.php">Servicio de Copiado</a></td>
-				   <td><img src="../images/reportes.png"><form align:"center"></form><a href="reportes.php">Genera Reportes</a></td>
-				   <td><img src="../images/peticiones.png" WIDTH=120  HEIGHT=120 ><form align:"center"></form><a href="solicitudes-pendientes.php">Peticiones de Servicio</a></td>
+				   		<tr>
+						   <td>
+									<a href="usuarios.php"><img src="../images/usuarios.png"></a>
+									<form align="left"></form>
+									<a href="usuarios.php">Personal</a>	
+						   	</td>
+
+						   <td>
+									<a href="servicio-copiado.php"><img src="../images/copiado.png"></a>
+						   			<form align="center"></form>
+						   			<a href="servicio-copiado.php">Servicio de Copiado</a>
+						   </td>
+
+						   <td>
+						   			<a href="reportes.php"><img src="../images/reportes.png"></a>
+						   			<form align="center"></form>
+						   			<a href="reportes.php">Genera Reportes</a>
+						   </td>
+
+						   <td>
+						   			<a href="solicitudes-pendientes.php"><img src="../images/peticiones.png" WIDTH=120  HEIGHT=120></a>
+						   			<form align="center"></form>
+						   			<a href="solicitudes-pendientes.php">Peticiones de Servicio</a>
+						   </td>
 				     </tr>
 				   </table> 
 		

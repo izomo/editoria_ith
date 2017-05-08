@@ -104,22 +104,23 @@ body,td,th {
 		    	$email=$row[3];
 		    }*/
 
-		$sql="SELECT * FROM reg_serv_copiado WHERE 	id_reg_serv_copiado=$id";
+		$sql="SELECT * FROM reg_serv_copiado WHERE id_personal=$id";
 		$ressql=mysql_query($sql);
 		while ($row=mysql_fetch_row ($ressql)){
-		    	$id=$row[0];
+		    	$Id_servicio=$row[0];
 		    	$Departamento=$row[1];
-		    	$Nombre=$row[2];
-		    	$Numero_copias=$row[3];
-		    	$Clave=$row[4];
-		    	$Fecha=$row[5];
+		    	$Id_personal=$row[2];
+		    	$Nombre=$row[3];
+		    	$Numero_copias=$row[4];
+		    	$Clave=$row[5];
+		    	$Fecha=$row[6];
 		    }
 
 		/*
 		$sql="UPDATE personal SET id_personal=$id, Nom_Personal=$Nombre, Nom_departamento=$Departamento, Correo_Electronico=$email WHERE id_personal=$id"
 		*/
 
-		$sql="UPDATE reg_serv_copiado SET id_reg_serv_copiado=$id, departamento=$Departamento, maestro=$Nombre, num_copias=$Numero_copias, clave=$Clave, fecha=$Fecha WHERE id_reg_serv_copiado=$id"
+		$sql="UPDATE reg_serv_copiado SET departamento=$Departamento, id_personal=$Id_personal, maestro=$Nombre, num_copias=$Numero_copias, clave=$Clave, fecha=$Fecha WHERE id_personal=$id"
 
 		/*
 		$sql="SELECT * FROM personal WHERE Nom_Personal=$Nombre";
@@ -153,19 +154,30 @@ body,td,th {
 		<div align="center">
 		<form name="form1" action="../php/ejecuta-actualizar-servicios.php?id_anterior=<?= $id ?>" method="post">
 				
-				Id<br><input type="text" name="id_modificar" value= "<?php echo $id ?>"><br>
+				Id<br><input type="text" name="ID_servicio" value= "<?php echo $Id_servicio ?>"><br>
+				
+				Id_Personal<br><input type="text" name="ID_personal" value= "<?php echo $Id_personal ?>"><br>
 				
 				<!--DEPARTAMENTO-->
 				<br>Departamento<br> 
-				    <select id="Nom_Departamento" name="Departamento_s" required="" >
+				    <select id="Nom_Departamento" name="Departamento_s" required="">
+				    		<option value="<?php echo($Departamento); ?>" > 
+								<?= $Departamento ?>	
+							</option> 
 						<?php	
-						include("connect_db.php");
+							include("connect_db.php");
 
-						$query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
-						$i = 0;
-						while ($row = mysql_fetch_assoc($query)) {
-							?><option value="<?= $row['Nom_Departamento']; ?>" ><?= $row['Nom_Departamento'];?></option><?php
-						$i++; }?>
+							$query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
+							while ($row = mysql_fetch_assoc($query)) {
+								if (trim($row['Nom_Departamento']) != trim($Departamento) ){
+								?><option value="<?php echo($row['Nom_Departamento']); ?>" >
+									<?php  
+											echo $row['Nom_Departamento'];
+									?>
+								</option><?php
+							$i++; }
+							}?>
+						?>
 				    </select><br><br>
 
 				Nombre<br> <input type="text" name="Maestro" value="<?php echo $Nombre?>"><br>
@@ -175,14 +187,24 @@ body,td,th {
 				Clave<br>
 
 					<select type="text" id="clave" name="Clave_s" style="border-radius:15px;" required>
+						<option value="<?php echo($Clave); ?>"> 
+								<?= $Clave ?>	
+						</option>
 						<?php	
 						include("connect_db.php");
 
 						$query = mysql_query("select servicio from tipo_servicio", $conexion) or die(mysql_error());
 						$i = 0;
 						while ($row = mysql_fetch_assoc($query)) {
-							?><option value="<?= $row['servicio']; ?>" ><?= $row['servicio'];?></option><?php
-						$i++; }?>
+							if ($row['servicio'] != trim($Clave) ){
+							?><option value="<?php echo($row['servicio']); ?>" >
+								<?php  
+										echo $row['servicio'];
+									
+								?>
+							</option><?php
+						$i++; }
+						}?>
 				    </select><br><br>
 			
 				Fecha<br> <input type="text" name="Fecha_s" value="<?php echo $Fecha?>"><br>

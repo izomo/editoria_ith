@@ -23,6 +23,23 @@
 	<script src="../bootstrap/js/bootstrap.js"></script>
 	<script src="../js/jquery.js"></script>
 	<script src="../js/myjava.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//Boton de busqueda de servicio
+			$('#btn-serv').click(function(){
+				var dato = $('#bs-serv').val();
+				var url = '../php/modificar-servicio.php';
+				$.ajax({
+					type:'POST',
+					url:url,
+					data:{'dato':dato},
+					success: function(datos){
+						$('#agrega-registros').html(datos);
+					}
+				});
+			});
+		});
+	</script>
  </head>
 
 <style type="text/css">
@@ -98,7 +115,13 @@
 	    	    <td>Buscar Servicio</td>
 	        </tr>
 	    	<tr>
-	        	<td><input type="text" placeholder="Busca por: Id" id="bs-serv"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	        	<td><input type="text" placeholder="Busca por: Id_personal" id="bs-serv"/>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+
+	        	<td width="100">
+	        	    <form name="form2">
+	        			<button id="btn-serv" type="button" class="btn btn-primary btn_sm">Buscar</button>
+	        	    </form>
+	        	</td>
 
 	        	<!--
 	        	<td width="100"> 
