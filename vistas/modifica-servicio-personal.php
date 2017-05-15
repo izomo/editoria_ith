@@ -104,7 +104,7 @@ body,td,th {
 		    	$email=$row[3];
 		    }*/
 
-		$sql="SELECT * FROM reg_serv_copiado WHERE id_personal=$id";
+		$sql="SELECT * FROM reg_serv_copiado WHERE id_reg_serv_copiado=$id";
 		$ressql=mysql_query($sql);
 		while ($row=mysql_fetch_row ($ressql)){
 		    	$Id_servicio=$row[0];
@@ -120,7 +120,7 @@ body,td,th {
 		$sql="UPDATE personal SET id_personal=$id, Nom_Personal=$Nombre, Nom_departamento=$Departamento, Correo_Electronico=$email WHERE id_personal=$id"
 		*/
 
-		$sql="UPDATE reg_serv_copiado SET departamento=$Departamento, id_personal=$Id_personal, maestro=$Nombre, num_copias=$Numero_copias, clave=$Clave, fecha=$Fecha WHERE id_personal=$id"
+		$sql="UPDATE reg_serv_copiado SET departamento=$Departamento, id_personal=$Id_personal, maestro=$Nombre, num_copias=$Numero_copias, clave=$Clave, fecha=$Fecha WHERE id_reg_serv_copiado=$id"
 
 		/*
 		$sql="SELECT * FROM personal WHERE Nom_Personal=$Nombre";
@@ -154,33 +154,18 @@ body,td,th {
 		<div align="center">
 		<form name="form1" action="../php/ejecuta-actualizar-servicios.php?id_anterior=<?= $id ?>" method="post">
 				
-				Id<br><input type="text" name="ID_servicio" value= "<?php echo $Id_servicio ?>"><br>
+				Id<br><input type="text" name="ID_servicio" value= "<?php echo $Id_servicio ?>" readonly="readonly"><br>
 				
-				Id_Personal<br><input type="text" name="ID_personal" value= "<?php echo $Id_personal ?>"><br>
+				Id_Personal<br><input type="text" name="ID_personal" value= "<?php echo $Id_personal ?>" readonly="readonly"><br>
 				
 				<!--DEPARTAMENTO-->
 				<br>Departamento<br> 
-				    <select id="Nom_Departamento" name="Departamento_s" required="">
-				    		<option value="<?php echo($Departamento); ?>" > 
-								<?= $Departamento ?>	
-							</option> 
-						<?php	
-							include("connect_db.php");
+				    <input id="Nom_Departamento" name="Departamento_s" type="text" required="" value="<?php echo($Departamento); ?>" readonly="readonly">
+				
+						
+				    <br><br>
 
-							$query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
-							while ($row = mysql_fetch_assoc($query)) {
-								if (trim($row['Nom_Departamento']) != trim($Departamento) ){
-								?><option value="<?php echo($row['Nom_Departamento']); ?>" >
-									<?php  
-											echo $row['Nom_Departamento'];
-									?>
-								</option><?php
-							$i++; }
-							}?>
-						?>
-				    </select><br><br>
-
-				Nombre<br> <input type="text" name="Maestro" value="<?php echo $Nombre?>"><br>
+				Nombre<br> <input type="text" name="Maestro" value="<?php echo $Nombre?>" readonly="readonly"><br>
 
 				Numero de Copias (Max 10,000)<br> <input style="border-radius:15px;" type="number" min="1" max="10000" name="Copias_s" value="<?php echo $Numero_copias?>"><br>
 

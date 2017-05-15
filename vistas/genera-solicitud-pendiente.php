@@ -109,7 +109,7 @@ body,td,th {
 		?>
 		<div align="center">
 		<form name="form1" action="../php/agrega-serv-nuevo-pendiente.php" method="post">
-				Id<br><input type="text" name="id" minlength="0" maxlength="10000" value= "<?php echo $id ?>" readonly="readonly" ><br>
+				Id<br><input type="text" name="id" minlength="0" maxlength="10000" value= "<?php echo $id ?>" readonly="readonly" disabled><br>
 				Fecha<br>
 				<input type="text" minlength="4" maxlength="11" name="fecha" value= "<?php echo $fecha ?>" required="" readonly=""><br>
 				Departamento<br> <input type="text" name="Nom_Departamento" minlength="8" maxlength="30" value="<?php echo $departamento?>" readonly="readonly" required><br>

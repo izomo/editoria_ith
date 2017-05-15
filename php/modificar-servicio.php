@@ -22,7 +22,7 @@ echo '<table class="table table-striped table-condensed table-hover">
                 <th width="200">Departamento</th>
                 <th width="250">Nombre</th>
                 <th width="150">Numero de Copias</th>
-                <th width="100">Clave</th>
+                <th width="100">Tipo de Servici</th>
                 <th width="100">Fecha</th>
                 <th width="100">Opciones</th>
             </tr>';
@@ -36,7 +36,7 @@ if(mysql_num_rows($registro)>0){
 				<td>'.$registro2['clave'].'</td>
 				<td>'.$registro2['fecha'].'</td>
 				
-				<td> <a href="../vistas/modifica-servicio-personal.php?id='.$registro2['id_personal'].'" class="glyphicon glyphicon-pencil"></a>
+				<td> <a href="../vistas/modifica-servicio-personal.php?id='.$registro2['id_reg_serv_copiado'].'" class="glyphicon glyphicon-pencil"></a>
 				<a href="javascript:eliminarServicio('.$registro2['id_reg_serv_copiado'].')" class="glyphicon glyphicon-remove-circle"></td>
 			</tr>';
 	}//Codigo Correcto de Javacript

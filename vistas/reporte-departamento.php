@@ -23,6 +23,9 @@ if (@!$_SESSION['user']) {
 <script src="../js/jquery.js"></script>
 <script src="../js/myjava.js"></script>
 <script type="text/javascript">
+
+		function reporteDepartamentoPDF(){
+
             $("document").ready(function(){
                 $("#Departamento").load("../php/departamentos.php");
                 $("#Departamento").change(function(){
@@ -33,6 +36,7 @@ if (@!$_SESSION['user']) {
                 	})
                 	}) 
             })
+        }
 </script>
   </head>
   <style type="text/css">
@@ -99,25 +103,38 @@ body,td,th {
 		<div class="caption">
 		
 <!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
-		<h2> Reporte de Servicios Por Usuarios</h2>	
+		<h2> Reporte de Servicios Por Departamento</h2>	
 		<div class="well well-small">
 		<hr class="soft"/>
 		<h4>Tabla de Usuarios</h4>
 		<div class="row-fluid">
 
-		<form name="form1" action="../php/reporte-realizado-departamento.php" method="post">
-		<p align="center">
-			<b style="color: #837E7E">Departamento</b><br>
-			<select id=Departamento name="Nom_Departamento" required>
-				
-			</select>
+		<body>
 
-            <br>
-			<b style="color: #837E7E">Fecha de Inicio</b><br> <input type="date" name="fechainicio" id="bd-desde" align="center" required><br>
-			<br>
-			<b style="color: #837E7E">Fecha Final</b><br> <input type="date" name="fechafinal" id="bd-hasta" align="center" required><br>
-		</p>
-        <input type="submit" name="generar" value="Generar"/>
+		<form name="form1">
+			<p align="center">
+				<b style="color: #837E7E">Departamento</b><br>
+					<select id="departamento" name="Nom_Departamento" required="" >
+								<?php	
+								include("connect_db.php");
+
+								$query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
+								$i = 0;
+								while ($row = mysql_fetch_assoc($query)) {
+									?><option value="<?= $row['Nom_Departamento']; ?>" ><?= $row['Nom_Departamento'];?></option><?php
+								$i++; }?>
+					</select><br><br>
+
+	            <br>
+
+
+				<b style="color: #837E7E">Fecha de Inicio</b><br> <input type="date" name="fechainicio" id="bd-desde" align="center" required><br>
+				<br>
+				<b style="color: #837E7E">Fecha Final</b><br> <input type="date" name="fechafinal" id="bd-hasta" align="center" required><br>
+			</p>
+
+	        <a target="_blank" href="javascript:reporteDepartamentoPDF();" class="btn btn-danger">Exportar Busqueda a PDF</a>
+
 	    </form>
 
 		<div class="span8">

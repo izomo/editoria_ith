@@ -7,7 +7,7 @@ if (@!$_SESSION['user']) {
 else{
 // Recibimos por POST los datos procedentes del formulario   
 include("connect_db.php");
-//$fecha = date('Y-m-d');
+
 $fecha = $_POST['fecha'];
 $maestro = $_POST["maestro"];
 $num_copias = $_POST["num_copias"];

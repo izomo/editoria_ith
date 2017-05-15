@@ -5,6 +5,7 @@ if (@!$_SESSION['user']) {
     header("Location:../index.php");
 }
 ?>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Editorial ITH</title>
@@ -64,9 +65,10 @@ body,td,th {
     <div class="container">
       <div class="nav-collapse">
         <ul class="nav">
-            <li class=""><a href="principal.php">Principal</a></li>
-             
-    
+            <li class=""><a href="reportes.php">Reportes:</a></li>
+            <li class=""><a href="crea-reportes.php">General</a></li>
+            <li class=""><a href="reporte-departamento.php">Por departamento</a></li>
+            <li class=""><a href="reporte-usuario.php">Por tipo de copia</a></li>
         </ul>
         <form action="#" class="navbar-search form-inline" style="margin-top:6px">
         
@@ -102,16 +104,17 @@ body,td,th {
     <table border="0" align="center">
     	<tr>
         	<td>Desde&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td><input type="date" id="bd-desde"/></td>
+            <td td width="50"><input type="date" id="bd-desde"/></td>
+            
             <td>Hasta&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td><input type="date" id="bd-hasta"/></td>
-            
-            <td width="200"><a target="_blank" href="javascript:reportePDF();" class="btn btn-danger">Exportar Busqueda a PDF</a></td>
+
+            <td width="300"><a target="_blank" href="javascript:reportePDF();" class="btn btn-danger">Exportar Busqueda a PDF</a></td>
         </tr>
     </table>
     </section>
 
-    <div class="registros" id="agrega-registros"></div>
+    
 </div></div>
     
       

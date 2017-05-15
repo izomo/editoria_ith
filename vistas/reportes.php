@@ -77,10 +77,20 @@ body,td,th {
 				<h2 style="color: #605C5C"; align="center">Menú</h2>
 				   <section align="center">
 				   <table align="center" border="0" style="width:80%">
-				   <tr><td><img src="../images/cronologico.png" WIDTH=120  HEIGHT=120><form align:"center"></form><a href="crea-reportes.php">Reporte General</a></td>
-				   <td><img src="../images/personal.png" WIDTH=120  HEIGHT=120><form align:"center"></form><a href="reporte-usuario.php">Reporte Por Personal</a></td>
-				   <td><img src="../images/departamento.png" WIDTH=180  HEIGHT=180><form align:"center"></form><a href="reporte-departamento.php">Reporte Por Departamento</a></td>
-				     </tr>
+					   <tr><td>
+
+					   		<a href="crea-reportes.php"><img src="../images/cronologico.png" WIDTH=120  HEIGHT=120></a>
+						   	<form align="center"></form>
+						   	<a href="crea-reportes.php">Reporte General</a>
+					   <td>
+					   		<a href="reporte-departamento.php"><img src="../images/departamento.png" WIDTH=180  HEIGHT=180></a>
+						   	<form align="center"></form>
+						   	<a href="reporte-departamento.php">Reporte Por Departamento</a>
+					   <td>
+					   		<a href="reporte-usuario.php"><img src="../images/personal.png" WIDTH=120  HEIGHT=180></a>
+						   	<form align="center"></form>
+						   	<a href="reporte-usuario.php">Reporte Por Tipo de Copia</a>
+					   </tr>
 				   </table>
 				   </section>
 		

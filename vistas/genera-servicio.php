@@ -4,7 +4,8 @@ session_start();
 if (@!$_SESSION['user']) {
 	header("Location:../index.php");
 }
-?>		
+?>
+		
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -115,19 +116,19 @@ body,td,th {
 		<form name="form1" action="../php/agrega-serv-nuevo-personal.php" method="post">
 				
 				<!--ID-->
-				Id_Personal<br><input style="border-radius:15px;" type="text" name="id_personal" minlength="0" maxlength="10000" value= "<?= $id_new ?>"><br>
+				Id_Personal<br><input style="border-radius:15px;" type="text" name="id_personal" minlength="0" maxlength="10000" value= "<?= $id_new ?>" readonly="readonly"><br>
 				<!--FECHA-->
-				Fecha<br><input style="border-radius:15px;" type="text" minlength="4" maxlength="11" name="fecha" value="<?php echo $fecha_actual; ?>"><br>
+				Fecha<br><input style="border-radius:15px;" type="text" minlength="4" maxlength="11" name="fecha" value="<?php echo $fecha_actual; ?>" readonly="readonly"><br>
 				<!--Departamento-->
-				Departamento<br> <input style="border-radius:15px;" type="text" name="Nom_Departamento" minlength="8" maxlength="30" value="<?= $departamento ?>" required><br>
+				Departamento<br> <input style="border-radius:15px;" type="text" name="Nom_Departamento" minlength="8" maxlength="30" value="<?= $departamento ?>" readonly="readonly"><br>
 				<!--Departamento-->
-				Nombre<br> <input style="border-radius:15px;" type="text" name="maestro" minlength="8" maxlength="50" value="<?= $nombre ?>" required><br>
+				Nombre<br> <input style="border-radius:15px;" type="text" name="maestro" minlength="8" maxlength="50" value="<?= $nombre ?>" readonly="readonly"><br>
 				<!--Numero de Copias-->
 				Numero de Copias: (Max 10,000)<br>
 				<input style="border-radius:15px;" type="number" min="1" max="10000" required="" name="num_copias">
 				<br>
 				<!--Clave-->
-				Clave: <br>
+				Tipo de Servicio: <br>
 					<select type="text" id="clave" name="clave" style="border-radius:15px;" required>
 					<option value="">Seleccionar</option>
 				<?php 
