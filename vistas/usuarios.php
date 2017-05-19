@@ -66,7 +66,7 @@
 			<li class=""><a href="principal.php">Principal</a></li>
 			<li class=""><a href="usuarios.php">Personal</a></li>
 			<li class=""><a href="servicio-copiado.php">Servicios</a></li>
-			<li class=""><a href="crea-reportes.php">Reportes</a></li>
+			<li class=""><a href="reportes.php">Reportes</a></li>
 			<li class=""><a href="solicitudes-pendientes.php">Peticiones</a></li>
 		</ul>
 			<form action="#" class="navbar-search form-inline" style="margin-top:6px">
@@ -87,10 +87,10 @@
 	<div class="span12">
 
 		<div class="caption">
-<!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
+				<!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
 		<div class="well well-small">
-		<hr class="soft"/>
-		<h4 align="center">Administración de Usuarios Registrados</h4>
+			<hr class="soft"/>
+			<h4 align="center">Administración de Usuarios Registrados</h4>
 		<div class="row-fluid">
 
     <section>

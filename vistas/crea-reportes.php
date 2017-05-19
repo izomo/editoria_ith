@@ -68,7 +68,7 @@ body,td,th {
             <li class=""><a href="reportes.php">Reportes:</a></li>
             <li class=""><a href="crea-reportes.php">General</a></li>
             <li class=""><a href="reporte-departamento.php">Por departamento</a></li>
-            <li class=""><a href="reporte-usuario.php">Por tipo de copia</a></li>
+            <li class=""><a href="reporte-copias.php">Por tipo de copia</a></li>
         </ul>
         <form action="#" class="navbar-search form-inline" style="margin-top:6px">
         

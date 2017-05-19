@@ -1,5 +1,5 @@
 <?php
-
+//echo("<scritpt>alert('soy loco'); </scritpt>");
 $conexion = mysql_connect('localhost','root','') or die ('error'.mysql_error());
 
 mysql_select_db('academ', $conexion);

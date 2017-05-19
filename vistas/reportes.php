@@ -58,8 +58,10 @@ body,td,th {
 	  <div class="nav-collapse">
 		<ul class="nav">
 			<li class=""><a href="principal.php">Principal</a></li>
-			 
-	
+			<li class=""><a href="usuarios.php">Personal</a></li>
+			<li class=""><a href="servicio-copiado.php">Servicios</a></li>
+			<li class=""><a href="reportes.php">Reportes</a></li>
+			<li class=""><a href="solicitudes-pendientes.php">Peticiones</a></li>
 		</ul>
 		<form action="#" class="navbar-search form-inline" style="margin-top:6px">
 		
@@ -74,7 +76,8 @@ body,td,th {
 </div>
 
 <!-- ======================================================================================================================== -->
-				<h2 style="color: #605C5C"; align="center">Menú</h2>
+				<h2 style="color: #605C5C"; align="center">Menú de Reportes</h2>
+				<br>
 				   <section align="center">
 				   <table align="center" border="0" style="width:80%">
 					   <tr><td>
@@ -87,9 +90,9 @@ body,td,th {
 						   	<form align="center"></form>
 						   	<a href="reporte-departamento.php">Reporte Por Departamento</a>
 					   <td>
-					   		<a href="reporte-usuario.php"><img src="../images/personal.png" WIDTH=120  HEIGHT=180></a>
+					   		<a href="reporte-copias.php"><img src="../images/personal.png" WIDTH=120  HEIGHT=180></a>
 						   	<form align="center"></form>
-						   	<a href="reporte-usuario.php">Reporte Por Tipo de Copia</a>
+						   	<a href="reporte-copias.php">Reporte Por Tipo de Copia</a>
 					   </tr>
 				   </table>
 				   </section>

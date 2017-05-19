@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php   
 
 session_start();
@@ -7,7 +6,7 @@ if (@!$_SESSION['user']) {
 }
 else{
 	
-	include("connect_db.php");
+include("connect_db.php");
 
 $pass = "iTh12345";	
 
@@ -21,33 +20,44 @@ while ($row = mysql_fetch_assoc($query)) {
 	$nomdepa_input = $row['Nom_Departamento'];
 }*/
 
-echo '<script>alert("Debe escribir el nombre completo")</script>';
-echo "<script>location.href='../vistas/agrega-personal.php'</script>";
+echo "Debe escribir el nombre completo!";
 
 
 }else{
-$id = $_POST["id"];
-$nombreapellido = $_POST["nombre"];
-$departamento = $_POST["Nom_Departamento"];
-$Email = $_POST["email"];
+	$id = $_POST["id"];
+	$nombreapellido = $_POST["nombre"];
+	$departamento = $_POST["departamento"];
+	$Email = $_POST["email"];
 
-$query_string = "SELECT Nom_Departamento FROM departamentos where ID_Departamento = '$departamento'";
-$query = mysql_query($query_string) or die(mysql_error());
+	$query_string = "SELECT id_personal  FROM personal where id_personal = $id";
+	$query = mysql_query($query_string) or die(mysql_error());
+	$existe = false;
+	while ($row = mysql_fetch_assoc($query)) {
+		if ($row['id_personal']!=""){
+			echo("Este registro ya existe!");
+			$existe = true;	
+		}
+	}
 
-$nomdepa = "";
+	$query_string = "SELECT Nom_Departamento FROM departamentos where ID_Departamento = '$departamento'";
+	$query = mysql_query($query_string) or die(mysql_error());
 
-while ($row = mysql_fetch_assoc($query)) {
-	$nomdepa = $row['Nom_Departamento'];
-}
-	mysql_query("INSERT INTO personal 
+	$nomdepa = "";
+
+	while ($row = mysql_fetch_assoc($query)) {
+		$nomdepa = $row['Nom_Departamento'];
+	}
+
+if(!$existe){
+		mysql_query("INSERT INTO personal 
 		(id_personal,Nom_Personal,Nom_Departamento,Correo_Electronico,password,ID_Departamento) VALUES 
 		('$id','$nombreapellido','$departamento','$Email','$nomdepa','')", $conexion);
+		echo "Datos Guardados Con Exito";
+}
 
-	echo '<script>alert("Datos Guardados Con Exito")</script> ';	
-	echo "<script>location.href='../vistas/usuarios.php'</script>";
-	} 
+} 
 
-	}
+}
 
 
 ?>  

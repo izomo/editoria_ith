@@ -59,8 +59,10 @@ body,td,th {
 	  <div class="nav-collapse">
 		<ul class="nav">
 			<li class=""><a href="principal.php">Principal</a></li>
-			 
-	
+			<li class=""><a href="usuarios.php">Personal</a></li>
+			<li class=""><a href="servicio-copiado.php">Servicios</a></li>
+			<li class=""><a href="reportes.php">Reportes</a></li>
+			<li class=""><a href="solicitudes-pendientes.php">Peticiones</a></li>
 		</ul>
 		<form action="#" class="navbar-search form-inline" style="margin-top:6px">
 		
@@ -128,7 +130,7 @@ body,td,th {
 				<input style="border-radius:15px;" type="number" min="1" max="10000" required="" name="num_copias">
 				<br>
 				<!--Clave-->
-				Tipo de Servicio: <br>
+				Tipo de Copias: <br>
 					<select type="text" id="clave" name="clave" style="border-radius:15px;" required>
 					<option value="">Seleccionar</option>
 				<?php 

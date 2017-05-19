@@ -24,19 +24,29 @@ if (@!$_SESSION['user']) {
 <script src="../js/myjava.js"></script>
 <script type="text/javascript">
 
-		function reporteDepartamentoPDF(){
 
-            $("document").ready(function(){
-                $("#Departamento").load("../php/departamentos.php");
-                $("#Departamento").change(function(){
-                	var id = $("#Departamento").val();
-                	$.get("../php/maestros.php",{param_id:id})
-                	.done(function(data){
-                		$("#maestro").html(data);
-                	})
-                	}) 
-            })
-        }
+		function reporteDepartamentoPDF(){
+		    var desde = $('#bd-desde').val();
+		    var hasta = $('#bd-hasta').val();
+		    var departamento = $('#bd-departamento').val();
+		    window.open('../php/productos_departamento.php?desde='+desde+'&hasta='+hasta+'&departamento='+departamento); 
+ 		}
+
+ 		function es_vacio(clic){
+		  var campo1 = document.getElementById("bd-desde").value;
+		  var campo2 = document.getElementById("bd-hasta").value;
+		  var campo3 = $('#bd-departamento').val();
+		  if((campo1 != "") && (campo2 != "") && (campo3 != "")){
+		    document.getElementById("exportar").removeAttribute('disabled');
+		    if(clic){
+		  		reporteDepartamentoPDF();	
+		  	}
+		  }
+		  else{
+		    document.getElementById("exportar").setAttribute('disabled', 'disabled');
+  		}
+}
+
 </script>
   </head>
   <style type="text/css">
@@ -77,9 +87,10 @@ body,td,th {
 	<div class="container">
 	  <div class="nav-collapse">
 		<ul class="nav">
-			<li class=""><a href="principal.php">Principal</a></li>
-			 
-	
+			<li class=""><a href="reportes.php">Reportes:</a></li>
+            <li class=""><a href="crea-reportes.php">General</a></li>
+            <li class=""><a href="reporte-departamento.php">Por departamento</a></li>
+            <li class=""><a href="reporte-copias.php">Por tipo de copia</a></li>
 		</ul>
 		<form action="#" class="navbar-search form-inline" style="margin-top:6px">
 		
@@ -100,40 +111,45 @@ body,td,th {
 		
 	<div class="span12">
 
-		<div class="caption">
+		<div class="caption" align="center">
 		
 <!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
 		<h2> Reporte de Servicios Por Departamento</h2>	
 		<div class="well well-small">
 		<hr class="soft"/>
-		<h4>Tabla de Usuarios</h4>
+		<h4>Generar Reporte por Departamento</h4>
 		<div class="row-fluid">
 
 		<body>
 
 		<form name="form1">
 			<p align="center">
-				<b style="color: #837E7E">Departamento</b><br>
-					<select id="departamento" name="Nom_Departamento" required="" >
-								<?php	
-								include("connect_db.php");
 
-								$query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
-								$i = 0;
-								while ($row = mysql_fetch_assoc($query)) {
-									?><option value="<?= $row['Nom_Departamento']; ?>" ><?= $row['Nom_Departamento'];?></option><?php
-								$i++; }?>
-					</select><br><br>
+					<b style="color: #837E7E">Departamento</b><br>
+		              <select type="text" id="bd-departamento" name="Nom_Departamento">
+		                <?php 
+		                include("connect_db.php");
 
-	            <br>
+		                $query = mysql_query("select Nom_Departamento from departamentos", $conexion) or die(mysql_error());
+		                $i = 0;
+		                while ($row = mysql_fetch_assoc($query)) {
+		                  ?><option value="<?= $row['Nom_Departamento']; ?>" ><?= $row['Nom_Departamento'];?></option><?php
+		                $i++; }?>
+		            </select><br><br>
 
 
-				<b style="color: #837E7E">Fecha de Inicio</b><br> <input type="date" name="fechainicio" id="bd-desde" align="center" required><br>
+				<b style="color: #837E7E">Fecha de Inicio</b><br> <input type="date" name="fechainicio" id="bd-desde" align="center" onChange="es_vacio()"><br>
 				<br>
-				<b style="color: #837E7E">Fecha Final</b><br> <input type="date" name="fechafinal" id="bd-hasta" align="center" required><br>
-			</p>
+				<b style="color: #837E7E">Fecha Final</b><br> <input type="date" name="fechafinal" id="bd-hasta" align="center" onChange="es_vacio()"><br><br><br>
 
-	        <a target="_blank" href="javascript:reporteDepartamentoPDF();" class="btn btn-danger">Exportar Busqueda a PDF</a>
+<!--
+				<input type="submit" value="Exportar a PDF" target="_blank" onclick="reporteDepartamentoPDF();" class="btn btn-danger"></input> -->
+				
+	        	<a disabled="true" type="submit" id="exportar" href="javascript:es_vacio(true);" class="btn btn-danger">Exportar a PDF</a>
+			</p>
+			
+			
+	        
 
 	    </form>
 

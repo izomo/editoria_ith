@@ -22,6 +22,25 @@ if (@!$_SESSION['user']) {
 <script src="../bootstrap/js/bootstrap.js"></script>
 <script src="../js/jquery.js"></script>
 <script src="../js/myjava.js"></script>
+<script type="text/javascript">
+
+	function Confirmacion(id){
+		
+		if(confirm('¿Esta seguro(a) que el servicio fue Atendido?'))
+		{
+			window.location="../php/actualizarpendiente.php?id="+id;
+		}
+		else
+		{
+			return false;
+			alert("Servicio No Atendido");
+		}	
+	}
+
+</script>
+
+
+
   </head>
   <style type="text/css">
 body {
@@ -57,7 +76,7 @@ body,td,th {
 			<li class=""><a href="principal.php">Principal</a></li>
 			<li class=""><a href="usuarios.php">Personal</a></li>
 			<li class=""><a href="servicio-copiado.php">Servicios</a></li>
-			<li class=""><a href="crea-reportes.php">Reportes</a></li>
+			<li class=""><a href="reportes.php">Reportes</a></li>
 			<li class=""><a href="solicitudes-pendientes.php">Peticiones</a></li>
 		</ul>
 		<form action="#" class="navbar-search form-inline" style="margin-top:6px">
@@ -93,32 +112,34 @@ body,td,th {
 
 //EJECUTAMOS LA CONSULTA DE BUSQUEDA
 
-$registro = mysql_query("SELECT * FROM solicitudes_maestros WHERE estatus = 'pendiente' ORDER BY id_solicitud ASC");
+$registro = mysql_query("SELECT * FROM peticiones WHERE estatus = 'pendiente' ORDER BY id_peticiones ASC");
 
 //CREAMOS NUESTRA VISTA Y LA DEVOLVEMOS AL AJAX
 
 echo '<table class="table table-striped table-condensed table-hover">
         	<tr>
-            	<th style="color: #605C5C" width="30">ID</th>
+            	<th style="color: #605C5C" width="20">ID</th>
                 <th style="color: #605C5C" width="180">Departamento</th>
-                <th style="color: #605C5C" width="180">Maestro</th>
+                <th style="color: #605C5C" width="150">Maestro</th>
                 <th style="color: #605C5C" width="50">No. Copias</th>
-                <th style="color: #605C5C" width="50">Clave</th>
-                <th style="color: #605C5C" width="30">Fecha</th>
+                <th style="color: #605C5C" width="50">Tipo de Copias</th>
+                <th style="color: #605C5C" width="70">Fecha</th>
                 <th style="color: #605C5C" width="30">Estatus</th>
                 <th style="color: #605C5C" width="30">Opciones</th>
             </tr>';
-if(mysql_num_rows($registro)>0){
+if(mysql_num_rows($registro)>0){ 
 	while($registro2 = mysql_fetch_array($registro)){
 		echo '<tr>
-				<td style="color: #837e7e">'.$registro2['id_solicitud'].'</td>
+				<td style="color: #837e7e">'.$registro2['id_personal'].'</td>
 				<td style="color: #837e7e">'.$registro2['departamento'].'</td>
 				<td style="color: #837e7e">'.$registro2['maestro'].'</td>
 				<td style="color: #837e7e">'.$registro2['num_copias'].'</td>
 				<td style="color: #837e7e">'.$registro2['clave'].'</td>
-				<td style="color: #837e7e">'.fechaNormal($registro2['fecha']).'</td>
+				<td style="color: #837e7e">'.$registro2['fecha'].'</td>
 				<td style="color: #837e7e">'.$registro2['estatus'].'</td>
-				<td align="center"><a href="genera-solicitud-pendiente.php?id=('.$registro2['id_solicitud'].');" class="glyphicon glyphicon-new-window"></a>      <a href="../php/actualizarpendiente.php?id=('.$registro2['id_solicitud'].');" class="glyphicon glyphicon-ok"></a></td>
+				<td align="center">
+				<a href="genera-solicitud-pendiente.php?id=('.$registro2['id_peticiones'].');" class="glyphicon glyphicon-new-window"></a>      
+				<a href="javascript:Confirmacion('.$registro2['id_peticiones'].');" class="glyphicon glyphicon-ok"></a></td>
 				</tr>';
 	}
 }else{

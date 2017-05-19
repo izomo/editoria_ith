@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+
+
 	//Boton de Busqueda de Personal 
 	$('#btn-prod').click(function(){
 		var dato = $('#bs-prod').val();
@@ -58,6 +60,27 @@ $(document).ready(function(){
 	});
 	return false;
 	});
+
+/*
+	$('#bs-pet').keyup(function(e){
+		if(e.keyCode == 13) {
+			alert("hello");
+			var dato = $('#bs-pet').val();
+			var url = '../php/busca-peticion.php';
+				$.ajax({
+				type:'POST',
+				url:url,
+				data:'id_personal='+dato,
+					success: function(datos){
+						var array_json = JSON.parse(datos);	
+						$('#maestro').val(array_json[0]);	
+						$('#Nom_Departamento').val(array_json[1]);
+					}
+			});
+			return false;
+		}
+	}); 
+	*/
 
 	$('#nuevo-producto').on('click',function(){
 		$('#formulario')[0].reset();

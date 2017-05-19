@@ -25,6 +25,24 @@
 <script type="text/javascript">
             $("document").ready(function(){
                 $("#Departamento").load("../php/departamentos.php"); 
+                //Boton de Busqueda de Personal 
+				$('#btn_guardar').click(function(){
+					var id = $('#id').val();
+					var nombre = $('#nombre').val();
+					var departamento = $('#departamento').val();
+					var email = $('#email').val();
+					var url = '../php/agrega-nueva-persona.php';
+					$.ajax({
+						type:'POST',
+						url:url,
+						data:{'id':id,'nombre':nombre,'departamento':departamento,'email':email},
+						success: function(dato){
+							alert(dato);	
+						}
+					});
+					return false;
+
+				});
             })
 </script>
   </head>
@@ -67,6 +85,10 @@ body,td,th {
 	  <div class="nav-collapse">
 		<ul class="nav">
 			<li class=""><a href="principal.php">Principal</a></li>
+			<li class=""><a href="usuarios.php">Personal</a></li>
+			<li class=""><a href="servicio-copiado.php">Servicios</a></li>
+			<li class=""><a href="reportes.php">Reportes</a></li>
+			<li class=""><a href="solicitudes-pendientes.php">Peticiones</a></li>
 		</ul>
 
 		<form action="#" class="navbar-search form-inline" style="margin-top:6px">
@@ -95,18 +117,18 @@ body,td,th {
 		<h4>Agregar un nuevo personal</h4>
 		<div class="row-fluid">
 
-		<form action="../php/agrega-nueva-persona.php" method="post">
+		<form>
 		        
 		        </div>
 		        <br>
 		        <div align="center">
 				    Id_Personal<br> <input type="number" min="0" id="id" name="id" required><br>
-				    
+			
 				    Apellidos y Nombres<br> <input type="text" minlength="10" maxlength="100" id="nombre" name="nombre" onKeyUp="this.value=this.value.toUpperCase();" required="">
 				    
 					<!--DEPARTAMENTO-->
 				    <br>Departamento<br> 
-				    <select id="departamento" name="Nom_Departamento" required="" >
+				    <select id="departamento" name="departamento" required="" >
 						<?php	
 						include("connect_db.php");
 
@@ -121,7 +143,7 @@ body,td,th {
 				    Correo Electronico<br> <input type="email" id="email" name="email" required=""><br>
 				<br>
 				<br>
-				<input type="submit" value="Guardar" class="btn btn-success btn-primary">
+				<button id="btn_guardar"  class="btn btn-success btn-primary ">Guardar</button>
 			</form>
 			<script type="text/javascript">
 
