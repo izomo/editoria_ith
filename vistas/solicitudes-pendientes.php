@@ -120,12 +120,12 @@ echo '<table class="table table-striped table-condensed table-hover">
         	<tr>
             	<th style="color: #605C5C" width="20">ID</th>
                 <th style="color: #605C5C" width="180">Departamento</th>
-                <th style="color: #605C5C" width="150">Maestro</th>
-                <th style="color: #605C5C" width="50">No. Copias</th>
-                <th style="color: #605C5C" width="50">Tipo de Copias</th>
-                <th style="color: #605C5C" width="70">Fecha</th>
+                <th style="color: #605C5C" width="180">Maestro</th>
+                <th style="color: #605C5C" width="30">Copias</th>
+                <th style="color: #605C5C" width="100">Tipo de Copias</th>
+                <th style="color: #605C5C" width="80">Fecha</th>
                 <th style="color: #605C5C" width="30">Estatus</th>
-                <th style="color: #605C5C" width="30">Opciones</th>
+                <th style="color: #605C5C" width="10">Opciones</th>
             </tr>';
 if(mysql_num_rows($registro)>0){ 
 	while($registro2 = mysql_fetch_array($registro)){
@@ -138,7 +138,9 @@ if(mysql_num_rows($registro)>0){
 				<td style="color: #837e7e">'.$registro2['fecha'].'</td>
 				<td style="color: #837e7e">'.$registro2['estatus'].'</td>
 				<td align="center">
-				<a href="genera-solicitud-pendiente.php?id=('.$registro2['id_peticiones'].');" class="glyphicon glyphicon-new-window"></a>      
+				<!--
+				<a href="genera-solicitud-pendiente.php?id=('.$registro2['id_peticiones'].');" class="glyphicon glyphicon-new-window"></a>
+				-->      
 				<a href="javascript:Confirmacion('.$registro2['id_peticiones'].');" class="glyphicon glyphicon-ok"></a></td>
 				</tr>';
 	}
