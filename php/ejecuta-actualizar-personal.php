@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 if (@!$_SESSION['user']) {
   header("Location:../index.php");
@@ -15,23 +14,25 @@ else{
 	$Departamento = $_POST['Nom_Departamento'];
 	$correo = $_POST['email'];
 
+	//$sentencia=mysql_query("UPDATE personal SET id_personal='$id_modificar', Nom_Personal='$Nombre', Nom_Departamento='$Departamento', Correo_Electronico= '$correo' where id_personal='$id_anterior'", $conexion) or die (mysql_error());
+	
+	$comprobar = mysql_query("SELECT id_personal from personal where id_personal = '$id_modificar' ");
 
-
-
-	$sentencia=mysql_query("UPDATE personal SET id_personal='$id_modificar', Nom_Personal='$Nombre', Nom_Departamento='$Departamento', Correo_Electronico= '$correo' where id_personal='$id_anterior'", $conexion) or die (mysql_error());
 	//$resent=mysql_query($sentencia);
-	if ($sentencia==null) {
-		//echo "Error de procesamieno no se han actuaizado los datos";
-		
-		echo ' <script>alert("ERROR EN PROCESAMIENTO NO SE ACTUALIZARON LOS DATOS")</script> ';
-		header("location: ../vistas/usuarios.php");
-		
-		//echo "<script>location.href='../vistas/admin.php'</script>";
+	
+	if(mysql_num_rows($comprobar)!=0)  {
+		echo '<script>alert("El Id ya existe, Por favor escriba otro");</script> ';
+		echo "<script>location.href='../vistas/usuarios.php'</script>";
+		//echo "<script>location.href='../vistas/actualizarpersonal.php?id=id_anterior'</script>";
+
 	}else {
+		
+		$sentencia=mysql_query("UPDATE personal SET id_personal='$id_modificar', Nom_Personal='$Nombre', Nom_Departamento='$Departamento', Correo_Electronico= '$correo' where id_personal='$id_anterior'", $conexion) or die (mysql_error());
 
 		echo '<script>alert("REGISTRO ACTUALIZADO")</script> ';
 		echo "<script>location.href='../vistas/usuarios.php'</script>";
 		
 	}
+
 }
 ?>

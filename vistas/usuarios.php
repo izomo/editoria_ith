@@ -111,7 +111,7 @@
 
 
 	        	<td width="100">
-	        	    <form name="form1" action="agrega-personal.php" method="post">
+	        	    <form name="form1" action="busca-personal.php" method="post">
 	        		<input type="submit" value="Agrega Nuevo Personal" class="btn btn-primary"></input> </form>
 	        	</td>
 

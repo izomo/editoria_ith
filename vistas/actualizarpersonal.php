@@ -13,12 +13,27 @@ if (@!$_SESSION['user']) {
     <meta name="description" content="">
     <link rel="stylesheet" type="text/css" href="../css/estilos.css">
     <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<script src="../bootstrap/js/bootstrap.js"></script>
+	<script src="../js/jquery.js"></script>
+	<script src="../js/myjava.js"></script>
+    <script type="text/javascript">
+    	
+    	function valida(){
+		 campo = document.getElementById("id_modificar");
+			if(campo.value==''){
+			 alert('El Id no puede estar vacio!');
+				return false;
+			}
+		return true;
+		}
+
+    </script>
   </head>
   <style type="text/css">
 body {
@@ -106,41 +121,14 @@ body,td,th {
 		    	$email=$row[3];
 		    }
 
-		$sql="UPDATE personal SET id_personal=$id, Nom_Personal=$Nombre, Nom_departamento=$Departamento, Correo_Electronico=$email WHERE id_personal=$id"
+		$sql="UPDATE personal SET id_personal=$id, Nom_Personal=$Nombre, Nom_departamento=$Departamento, Correo_Electronico=$email WHERE id_personal=$id";
 
-		/*
-		$sql="SELECT * FROM personal WHERE Nom_Personal=$Nombre";
-		$ressql=mysql_query($sql);
-		while ($row=mysql_fetch_row ($ressql)){
-		    	$id=$row[0];
-		    	$Nombre=$row[1];
-		    	$Departamento=$row[2];
-		    	$email=$row[3];
-		    }
-
-		$sql="SELECT * FROM personal WHERE Correo_Electronico=$email";
-		$ressql=mysql_query($sql);
-		while ($row=mysql_fetch_row ($ressql)){
-		    	$id=$row[0];
-		    	$Nombre=$row[1];
-		    	$Departamento=$row[2];
-		    	$email=$row[3];
-		    }
-
-		$sql="SELECT * FROM personal WHERE Nom_departamento=$Departamento";
-		$ressql=mysql_query($sql);
-		while ($row=mysql_fetch_row ($ressql)){
-		    	$id=$row[0];
-		    	$Nombre=$row[1];
-		    	$Departamento=$row[2];
-		    	$email=$row[3];
-		    }*/
 
 		?>
 		<div align="center">
-		<form name="form1" action="../php/ejecuta-actualizar-personal.php?id_anterior=<?= $id ?>" method="post">
+		<form name="form1" onsubmit="return valida()" action="../php/ejecuta-actualizar-personal.php?id_anterior=<?= $id ?>" method="post">
 				
-				Id<br><input type="text" name="id_modificar" value= "<?php echo $id ?>"><br>
+				Id<br><input id="id_modificar" type="number" name="id_modificar" min="1" max="10000" value= "<?php echo $id ?>"><br>
 				Nombre<br> <input type="text" name="Nombre" value="<?php echo $Nombre?>"><br>
 
 				<!--DEPARTAMENTO-->
