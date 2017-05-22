@@ -24,22 +24,31 @@ $tota=0;
 $pdf = new FPDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial', '', 10);
-$pdf->Image('../images/ithlogo.png' , 10 ,8, 16 , 16,'PNG');
-$pdf->Cell(18, 10, '', 0);
-$pdf->Cell(150, 10, 'Editorial ITH', 0);
+$pdf->Image('../images/pdf-ith.png' , 15 ,18, 180 , 28,'PNG');
+$pdf->Cell(5, 10, '', 0);
+$pdf->Cell(150, 5, '', 0);
 $pdf->SetFont('Arial', '', 9);
-$pdf->Cell(50, 10, ''.date('d-m-Y').'', 0);
+$pdf->Cell(50, 5, 'Editorial ITH_'.date('d-m-Y').'', 0);
+$pdf->Ln(18);
+$pdf->SetFont('Arial', 'B', 18);
+$pdf->Cell(30, 58, '', 0);
+$pdf->Cell(75, 48, 'Departamento de Comunicacion y Difusion', 0);
 $pdf->Ln(15);
 $pdf->SetFont('Arial', 'B', 11);
-$pdf->Cell(70, 8, '', 0);
-$pdf->Cell(100, 8, 'Reporte de Servicios', 0);
-$pdf->Ln(10);
+$pdf->Cell(80, 28, '', 0);
+$pdf->Cell(5, 38, 'Editorial ITH', 0);
+$pdf->Ln(12);
+$pdf->SetFont('Arial', 'B', 11);
+$pdf->Cell(67, 38, '', 0);
+$pdf->Cell(5, 28, 'Reporte General de Servicios', 0);
+$pdf->Ln(9);
 $pdf->Cell(60, 8, '', 0);
-$pdf->Cell(100, 8, 'Desde: '.$verDesde.' hasta: '.$verHasta, 0);
-$pdf->Ln(23);
+$pdf->Cell(100, 25, 'Desde: '.$verDesde.' Hasta: '.$verHasta, 0);
+//Encabezado
+$pdf->Ln(20);
 $pdf->SetFont('Arial', 'B', 8);
-
-$pdf->Cell(60, 8, 'Departamento', 1);
+$pdf->Cell(45, 8, '');
+$pdf->Cell(80, 8, 'Departamento', 1);
 $pdf->Cell(20, 8, 'No. de Copias', 1);
 
 $pdf->Ln(8);
@@ -58,15 +67,18 @@ $query_total = mysql_query("select sum(res.total) from (SELECT departamento, SUM
 $total = mysql_fetch_array($query_total);
 while($productos2 = mysql_fetch_array($productos)){
 
-
-	$pdf->Cell(60, 8,$productos2['departamento'], 0);
-	$pdf->Cell(20, 8, $productos2['SUM(num_copias)'], 0);
+	$pdf->Cell(45, 8, '');
+	$pdf->Cell(80, 8,$productos2['departamento'], 0);
+	$pdf->Cell(20, 8, $productos2['SUM(num_copias)'], 0,0,'C');
 	$pdf->Ln(8);
 	//$pdf->$total = $total + $productos2['num_copias'];
 }
-
-$pdf->Cell(60, 8, 'Total', 1);
-$pdf->Cell(20, 8,$total['sum(res.total)'], 1);
+//Parte Inferior
+$pdf->Cell(45, 8, '');
+$pdf->SetFont('Arial', 'B', 8);
+$pdf->Cell(80, 8, 'Total', 1);
+$pdf->SetFont('Arial', '', 8);
+$pdf->Cell(20, 8,$total['sum(res.total)'], 1,0,'C');
 
 	
 

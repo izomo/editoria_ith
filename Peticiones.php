@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-
-?>
 <html>
 <head>
 	
@@ -69,7 +67,7 @@
 				});
 				return false;
 			}else{
-				alert("El campo de id no tiene campos!");
+				alert("No a ingresado un Id existente y solo admite numeros!");
 				$('#maestro').val("");	
 				$('#Nom_Departamento').val("");
 				return false;
@@ -100,7 +98,6 @@ body,td,th {
 
 </header>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
 
 <table width="100%" border="0">
   
@@ -117,7 +114,7 @@ body,td,th {
 				
 				<!--ID-->
 				<br><label style="font-size: 12pt; color: #605C5C" ><b>Identificador: </b></label>
-					<input style="border-radius:15px;" type="text" placeholder="Ingrese su Identificador" id="bs-pet" name="id" required/>
+					<input style="border-radius:15px;" type="number" placeholder="Ingrese su Identificador" id="bs-pet" name="id" required/>
 				<br>
 	        		<button  class="btn btn-primary btn_sm" id="bs-btn-pet" >Buscar</button>
 	        	<br>	 

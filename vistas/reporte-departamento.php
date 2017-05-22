@@ -29,7 +29,7 @@ if (@!$_SESSION['user']) {
 		    var desde = $('#bd-desde').val();
 		    var hasta = $('#bd-hasta').val();
 		    var departamento = $('#bd-departamento').val();
-		    window.open('../php/productos_departamento.php?desde='+desde+'&hasta='+hasta+'&departamento='+departamento); 
+		    window.open('../php/productos_departamento.php?desde='+desde+'&hasta='+hasta+'&departamento='+departamento);
  		}
 
  		function es_vacio(clic){
@@ -39,7 +39,7 @@ if (@!$_SESSION['user']) {
 		  if((campo1 != "") && (campo2 != "") && (campo3 != "")){
 		    document.getElementById("exportar").removeAttribute('disabled');
 		    if(clic){
-		  		reporteDepartamentoPDF();	
+		  		reporteDepartamentoPDF();
 		  	}
 		  }
 		  else{
