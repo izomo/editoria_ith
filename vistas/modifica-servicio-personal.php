@@ -86,10 +86,10 @@ body,td,th {
 		<div class="caption">
 		
 <!--///////////////////////////////////////////////////Empieza cuerpo del documento interno////////////////////////////////////////////-->
-		<h2> Administración de Personal Registrado</h2>	
+		<h2> Edicion de Registro de Servicios</h2>	
 		<div class="well well-small">
 		<hr class="soft"/>
-		<h4 align="center">Edición de Personal</h4>
+		<h4 align="center">Edición de Servicios</h4>
 		<div class="row-fluid">
 		
 		<?php
@@ -172,7 +172,7 @@ body,td,th {
 
 				Numero de Copias (Max 10,000)<br> <input style="border-radius:15px;" type="number" min="1" max="10000" name="Copias_s" value="<?php echo $Numero_copias?>"><br>
 
-				Clave<br>
+				Tipos de Copias<br>
 
 					<select type="text" id="clave" name="Clave_s" style="border-radius:15px;" required>
 						<option value="<?php echo($Clave); ?>"> 
@@ -195,7 +195,7 @@ body,td,th {
 						}?>
 				    </select><br><br>
 			
-				Fecha<br> <input type="text" name="Fecha_s" value="<?php echo $Fecha?>"><br>
+				Fecha<br> <input type="date" name="Fecha_s" value="<?php echo $Fecha?>"><br>
 		</div>
 				<input type="submit" name="Guardar" value="Guardar" class="btn btn-success btn-primary">
 		</form>
